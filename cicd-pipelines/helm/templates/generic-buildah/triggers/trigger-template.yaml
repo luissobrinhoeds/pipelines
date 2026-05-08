@@ -22,14 +22,11 @@ spec:
 
         workspaces:
           - name: shared-workspace
-            volumeClaimTemplate:
-              spec:
-                accessModes: ["ReadWriteOnce"]
-                resources:
-                  requests:
-                    storage: 1Gi
+            persistentVolumeClaim:
+              claimName: tekton-workspace
+
         timeouts:
-          pipeline: 10h0m0s
+          pipeline: 1h0m0s
 
         params:
           - name: GIT_REPO
