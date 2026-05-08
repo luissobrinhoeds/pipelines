@@ -10,9 +10,10 @@ spec:
     repoURL: git@github.com:luissobrinhoeds/pipelines.git
     #repoURL: ssh://git@gogs.fsfx.org.br:2222/srvopenshift/ocp-gitops-platform.git
     targetRevision: HEAD
-    path: cicd-pipelines
-    directory:
-      recurse: true
+    path: cicd-pipelines/helm
+    helm:
+      valueFiles:
+        - values.yaml
 
   destination:
     name: ocp-homol
