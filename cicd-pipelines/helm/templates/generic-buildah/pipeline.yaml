@@ -48,7 +48,7 @@ spec:
         - name: IMAGE
           value: $(params.GIT_REPO):$(params.GIT_BRANCH)-$(params.GIT_COMMIT_ID)
       workspaces:
-        - name: output
+        - name: source
           workspace: shared-workspace
           subPath: source-code
       runAfter:
