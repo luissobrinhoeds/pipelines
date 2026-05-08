@@ -10,6 +10,7 @@ spec:
     - name: GIT_COMMIT_ID
     - name: GIT_REPO_NAME
     - name: IMAGE_URL
+      default: "image-registry.openshift-image-registry.svc.cluster.local:5000"
 
   workspaces:
     - name: shared-workspace
