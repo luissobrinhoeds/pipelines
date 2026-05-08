@@ -15,3 +15,6 @@ spec:
 
     - name: GIT_REPO_NAME
       value: $(body.repository.name)
+
+    - name: IMAGE_URL
+      value: $(body.repository.image_url)
