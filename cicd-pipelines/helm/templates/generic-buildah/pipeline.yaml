@@ -46,7 +46,7 @@ spec:
             value: openshift-pipelines
       params:
         - name: IMAGE
-          value: $(params.GIT_REPO):$(params.GIT_BRANCH)-$(params.GIT_COMMIT_ID)
+          value: $(params.GIT_REPO_NAME):$(params.GIT_BRANCH)-$(params.GIT_COMMIT_ID)
       workspaces:
         - name: source
           workspace: shared-workspace
