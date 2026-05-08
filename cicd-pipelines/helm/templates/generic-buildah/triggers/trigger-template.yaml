@@ -1,0 +1,45 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerTemplate
+metadata:
+  name: generic-buildah
+spec:
+  params:
+    - name: GIT_REPO
+    - name: GIT_BRANCH
+    - name: GIT_COMMIT_ID
+    - name: GIT_REPO_NAME
+
+  resourcetemplates:
+    - apiVersion: tekton.dev/v1
+      kind: PipelineRun
+      metadata:
+        generateName: $(tt.params.GIT_REPO_NAME)-cicd-
+      spec:
+        serviceAccountName: pipeline
+
+        pipelineRef:
+          name: generic-buildah
+
+        workspaces:
+          - name: shared-workspace
+            volumeClaimTemplate:
+              spec:
+                accessModes: ["ReadWriteOnce"]
+                resources:
+                  requests:
+                    storage: 1Gi
+        timeouts:
+          pipeline: 10h0m0s
+
+        params:
+          - name: GIT_REPO
+            value: $(tt.params.GIT_REPO)
+
+          - name: GIT_BRANCH
+            value: $(tt.params.GIT_BRANCH)
+
+          - name: GIT_COMMIT_ID
+            value: $(tt.params.GIT_COMMIT_ID)
+
+          - name: GIT_REPO_NAME
+            value: $(tt.params.GIT_REPO_NAME)

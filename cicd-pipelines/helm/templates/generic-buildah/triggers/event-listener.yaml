@@ -1,0 +1,14 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: EventListener
+metadata:
+  name: generic-buildah
+spec:
+  serviceAccountName: pipeline
+
+  triggers:
+    - name: generic-buildah
+      bindings:
+        - ref: generic-buildah
+
+      template:
+        ref: generic-buildah

@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: tekton
+  namespace: openshift-gitops
+spec:
+  project: pipelines
+
+  source:
+    repoURL: git@github.com:luissobrinhoeds/pipelines.git
+    #repoURL: ssh://git@gogs.fsfx.org.br:2222/srvopenshift/ocp-gitops-platform.git
+    targetRevision: HEAD
+    path: cicd-pipelines
+    directory:
+      recurse: true
+
+  destination:
+    name: ocp-homol
+    namespace: pipelines
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PruneLast=true
