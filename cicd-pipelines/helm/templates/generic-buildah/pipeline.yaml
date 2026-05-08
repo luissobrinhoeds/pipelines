@@ -26,9 +26,9 @@ spec:
             value: openshift-pipelines
       params:
         - name: URL
-          value: '${params.GIT_REPO}'
+          value: ${params.GIT_REPO}
         - name: REVISION
-          value: '${params.GIT_BRANCH}'
+          value: ${params.GIT_BRANCH}
       workspaces:
         - name: output
           workspace: shared-workspace
