@@ -50,7 +50,7 @@ spec:
         - name: IMAGE
           value: $(params.IMAGE_URL)/$(params.GIT_REPO_NAME):$(params.GIT_BRANCH)-$(params.GIT_COMMIT_ID)
         - name: TLS_VERIFY
-          value: false
+          value: 'false'
       workspaces:
         - name: source
           workspace: shared-workspace
