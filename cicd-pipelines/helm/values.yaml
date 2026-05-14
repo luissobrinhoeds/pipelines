@@ -1,1 +1,5 @@
-# Deixar em branco
+quay:
+  host: quay.apps.ocp-homol.sandbox1974.opentlc.com
+  username: quayadmin
+  password: "L@ranja425221"
+  email: no-reply@quay.com
