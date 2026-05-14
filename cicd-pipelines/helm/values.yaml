@@ -1,5 +1,5 @@
 quay:
   host: quay.apps.ocp-homol.sandbox1974.opentlc.com
-  username: quayadmin
-  password: "L@ranja425221"
+  username: 'quayadmin+pipelines'
+  password: "RJSMO8S9LCHIMBP1AXBSWIJ4WTJRWOJJ65OM5LWFBARAUY0AN9HQR5PFY4NA0ZTX"
   email: no-reply@quay.com
