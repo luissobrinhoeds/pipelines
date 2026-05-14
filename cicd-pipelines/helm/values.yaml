@@ -1,5 +1,5 @@
 quay:
-  host: quay.apps.ocp-homol.sandbox1974.opentlc.com
+  host: quay-quay-app.quay.svc.cluster.local
   username: 'openshift'
   password: "YJCK085EGRO8G2DSPZFKY1IORXPZD8OO"
   email: no-reply@quay.com
