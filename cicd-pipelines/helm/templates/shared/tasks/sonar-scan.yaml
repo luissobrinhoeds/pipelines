@@ -24,9 +24,13 @@ spec:
       script: |
         cd $(workspaces.source.path)
 
+        echo "SONAR SERVER: $(params.SONAR_HOST_URL)
+        $(params.PROJECT_NAME)"
+
+
         sonar-scanner \
           -Dsonar.projectKey=$(params.PROJECT_KEY) \
           -Dsonar.projectName=$(params.PROJECT_NAME) \
           -Dsonar.sources=. \
           -Dsonar.host.url=$(params.SONAR_HOST_URL) \
-          -Dsonar.login=$SONAR_TOKEN
+          -Dsonar.token=$SONAR_TOKEN
