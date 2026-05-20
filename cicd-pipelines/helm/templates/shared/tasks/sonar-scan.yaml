@@ -44,6 +44,9 @@ spec:
         SONAR SERVER: $(params.SONAR_HOST_URL)
         SONAR PROJECT: $(params.PROJECT_NAME)
         COMMAND: $CMD
+        PATH: $(pwd)
         "
+
+        ls -ltrah
 
         eval $CMD
