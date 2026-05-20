@@ -29,7 +29,7 @@ spec:
 
       script: |
         if [ -f ./target ] ; then
-          cd ./target
+          SONAR_OPTS="-Dsonar.java.binaries=target/classes"
         fi
 
         echo "
@@ -42,4 +42,5 @@ spec:
           -Dsonar.projectName=$(params.PROJECT_NAME) \
           -Dsonar.sources=. \
           -Dsonar.host.url=$(params.SONAR_HOST_URL) \
-          -Dsonar.token=$SONAR_TOKEN
+          -Dsonar.token=$SONAR_TOKEN \
+          $SONAR_OPTS
