@@ -28,7 +28,8 @@ spec:
               key: SONAR_HOST_URL
 
       script: |
-        if [ -f ./target ] ; then
+        if [ -d ./target/classes ] ; then
+          echo "Definindo sonar java binaries"
           SONAR_OPTS="-Dsonar.java.binaries=target/classes"
         fi
 
@@ -46,7 +47,4 @@ spec:
         COMMAND: $CMD
         PATH: $(pwd)
         "
-
-        ls -ltrah
-
         eval $CMD
