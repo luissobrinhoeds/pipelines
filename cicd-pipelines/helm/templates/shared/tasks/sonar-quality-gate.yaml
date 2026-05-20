@@ -4,8 +4,6 @@ metadata:
   name: sonar-quality-gate
 spec:
   params:
-    - name: SONAR_HOST_URL
-      default: "http://sonarqube-sonarqube.sonarqube.svc.cluster.local:9000"
     - name: PROJECT_KEY
 
   steps:
