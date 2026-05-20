@@ -11,6 +11,7 @@ spec:
   steps:
     - name: maven
       image: $(params.MAVEN_IMAGE)
+      workingDir: $(workspaces.source.path)
       script: |
-        cd $(workspaces.source.path)
         mvn clean package -DskipTests
+        ls -ltrahR
