@@ -54,6 +54,8 @@ spec:
         - name: output
           workspace: shared-workspace
           subPath: source-code
+      runAfter:
+        - git-clone-repo-app
 
     - name: sonar-scan
       params:
@@ -75,7 +77,7 @@ spec:
           workspace: shared-workspace
           subPath: source-code
       runAfter:
-        - git-clone-repo-app
+        - maven
 
     - name: sonar-quality-gate
       params:
