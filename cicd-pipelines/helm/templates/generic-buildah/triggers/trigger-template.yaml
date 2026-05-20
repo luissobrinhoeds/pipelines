@@ -9,6 +9,7 @@ spec:
     - name: GIT_COMMIT_ID
     - name: GIT_REPO_NAME
     - name: IMAGE_URL
+    - name: MAVEN_IMAGE
 
   resourcetemplates:
     - apiVersion: tekton.dev/v1
@@ -44,3 +45,6 @@ spec:
 
           - name: IMAGE_URL
             value: $(tt.params.IMAGE_URL)
+
+          - name: MAVEN_IMAGE
+            value: $(tt.params.MAVEN_IMAGE)

@@ -11,6 +11,8 @@ spec:
     - name: GIT_REPO_NAME
     - name: IMAGE_URL
       default: "image-registry.openshift-image-registry.svc.cluster.local:5000"
+    - name: MAVEN_IMAGE
+      default: "docker.io/library/maven:3.9.6-eclipse-temurin-17"
 
   workspaces:
     - name: shared-workspace
@@ -31,6 +33,24 @@ spec:
           value: $(params.GIT_REPO)
         - name: REVISION
           value: $(params.GIT_BRANCH)
+      workspaces:
+        - name: output
+          workspace: shared-workspace
+          subPath: source-code
+
+    - name: maven
+      taskRef:
+        resolver: cluster
+        params:
+          - name: kind
+            value: task
+          - name: name
+            value: maven
+          - name: namespace
+            value: {{ .Release.Namespace }}
+      params:
+        - name: IMAGE_MAVEN
+          value: $(params.MAVEN_IMAGE)
       workspaces:
         - name: output
           workspace: shared-workspace

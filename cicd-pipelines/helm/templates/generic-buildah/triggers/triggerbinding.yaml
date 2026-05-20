@@ -18,3 +18,6 @@ spec:
 
     - name: IMAGE_URL
       value: $(body.repository.image_url)
+
+    - name: MAVEN_IMAGE
+      value: $(body.repository.MAVEN_IMAGE)
