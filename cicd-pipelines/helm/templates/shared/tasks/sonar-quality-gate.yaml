@@ -4,6 +4,7 @@ metadata:
   name: sonar-quality-gate
 spec:
   params:
+    - name: SONAR_HOST_URL
     - name: PROJECT_KEY
 
   steps:

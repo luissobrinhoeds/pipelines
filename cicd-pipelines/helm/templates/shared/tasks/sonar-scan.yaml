@@ -4,6 +4,7 @@ metadata:
   name: sonar-scan
 spec:
   params:
+    - name: SONAR_HOST_URL
     - name: PROJECT_KEY
     - name: PROJECT_NAME
   workspaces:
