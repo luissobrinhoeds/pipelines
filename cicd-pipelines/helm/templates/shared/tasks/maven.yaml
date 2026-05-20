@@ -4,12 +4,12 @@ metadata:
   name: maven
 spec:
   params:
-    - name: IMAGE_MAVEN
+    - name: MAVEN_IMAGE
   workspaces:
     - name: source
 
   steps:
     - name: maven
-      image: $(params.IMAGEM_MAVEN)
+      image: $(params.MAVEN_IMAGE)
       script: |
         mvn clean package -DskipTests
