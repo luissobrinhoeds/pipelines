@@ -5,4 +5,4 @@ metadata:
 type: Opaque
 stringData:
   SONAR_TOKEN: "squ_a0cae6ac229b660e394e2ce1acc4c8d86ee2ec27"
-  SONAR_URL: "http://sonarqube-sonarqube.sonarqube.svc.cluster.local:9000"
+  SONAR_HOST_URL: "http://sonarqube-sonarqube.sonarqube.svc.cluster.local:9000"

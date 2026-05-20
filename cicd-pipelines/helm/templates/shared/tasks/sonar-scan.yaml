@@ -24,7 +24,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: sonarqube-token
-              key: SONAR_URL
+              key: SONAR_HOST_URL
 
       script: |
         cd $(workspaces.source.path)

@@ -39,7 +39,10 @@ spec:
     - name: sonar-scan
       params:
         - name: SONAR_HOST_URL
-          value: "sonarqube-sonarqube.sonarqube.svc.cluster.local"
+          valueFrom:
+            secretKeyRef:
+              name: sonarqube-token
+              key: SONAR_HOST_URL
         - name: PROJECT_KEY
           value: $(params.GIT_REPO_NAME)
         - name: PROJECT_NAME
@@ -63,7 +66,10 @@ spec:
     - name: sonar-quality-gate
       params:
         - name: SONAR_HOST_URL
-          value: "sonarqube-sonarqube.sonarqube.svc.cluster.local"
+          valueFrom:
+            secretKeyRef:
+              name: sonarqube-token
+              key: SONAR_HOST_URL
 
         - name: PROJECT_KEY
           value: $(params.GIT_REPO_NAME)

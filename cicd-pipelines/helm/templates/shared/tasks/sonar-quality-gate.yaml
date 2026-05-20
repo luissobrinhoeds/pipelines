@@ -18,11 +18,11 @@ spec:
             secretKeyRef:
               name: sonarqube-token
               key: SONAR_TOKEN
-        - name: SONAR_URL
+        - name: SONAR_HOST_URL
           valueFrom:
             secretKeyRef:
               name: sonarqube-token
-              key: SONAR_URL
+              key: SONAR_HOST_URL
 
       script: |
         yum install -y jq curl
