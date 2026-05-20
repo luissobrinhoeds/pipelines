@@ -36,6 +36,52 @@ spec:
           workspace: shared-workspace
           subPath: source-code
 
+    - name: sonar-scan
+      params:
+        - name: SONAR_HOST_URL
+          value: "sonarqube-sonarqube.sonarqube.svc.cluster.local"
+
+        - name: PROJECT_KEY
+          value: $(params.GIT_REPO_NAME)
+
+        - name: PROJECT_NAME
+          value: $(params.GIT_REPO_NAME)
+      taskRef:
+        resolver: cluster
+        params:
+          - name: kind
+            value: task
+          - name: name:
+            value: sonar-scan
+          - name: namespace:
+            value: {{ .Release.Namespace }}
+        workspaces:
+          - name: source
+            workspace: shared-workspace
+            subPath: source-code
+      runAfter:
+        - git-clone-repo-app
+
+    - name: sonar-quality-gate
+      params:
+        - name: SONAR_HOST_URL
+          value: "sonarqube-sonarqube.sonarqube.svc.cluster.local"
+
+        - name: PROJECT_KEY
+          value: $(params.GIT_REPO_NAME)
+
+      taskRef:
+        resolver: cluster
+        params:
+          - name: kind
+            value: task
+          - name: name:
+            value: sonar-quality-gate
+          - name: namespace:
+            value: {{ .Release.Namespace }}
+      runAfter:
+        - sonar-scan
+
     - name: build-image
       taskRef:
         resolver: cluster
@@ -56,4 +102,4 @@ spec:
           workspace: shared-workspace
           subPath: source-code
       runAfter:
-        - git-clone-repo-app
+        - sonar-scan

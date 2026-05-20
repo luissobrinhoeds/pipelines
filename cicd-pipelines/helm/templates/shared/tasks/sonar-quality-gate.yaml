@@ -1,0 +1,45 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: sonar-quality-gate
+spec:
+  params:
+    - name: SONAR_HOST_URL
+      default: "sonarqube-sonarqube.sonarqube.svc.cluster.local"
+    - name: PROJECT_KEY
+
+  steps:
+    - name: check
+      image: registry.access.redhat.com/ubi9/ubi
+
+      env:
+        - name: SONAR_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: sonarqube-token
+              key: SONAR_TOKEN
+
+      script: |
+        yum install -y jq curl
+
+        STATUS="PENDING"
+
+        while [[ "$STATUS" == "PENDING" || "$STATUS" == "IN_PROGRESS" ]]
+        do
+          STATUS=$(curl -s \
+            -u $SONAR_TOKEN: \
+            "$(params.SONAR_HOST_URL)/api/qualitygates/project_status?projectKey=$(params.PROJECT_KEY)" \
+            | jq -r '.projectStatus.status')
+
+          echo "Status: $STATUS"
+
+          sleep 15
+        done
+
+        if [[ "$STATUS" != "OK" ]]
+        then
+          echo "Quality Gate FAILED"
+          exit 1
+        fi
+
+        echo "Quality Gate PASSED"

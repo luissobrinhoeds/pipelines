@@ -1,0 +1,32 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: sonar-scan
+spec:
+  params:
+    - name: SONAR_HOST_URL
+      default: "sonarqube-sonarqube.sonarqube.svc.cluster.local"
+    - name: PROJECT_KEY
+    - name: PROJECT_NAME
+  workspaces:
+    - name: source
+
+  steps:
+    - name: sonar
+      image: sonarsource/sonar-scanner-cli:latest
+      env:
+        - name: SONAR_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: sonarqube-token
+              key: SONAR_TOKEN
+
+      script: |
+        cd $(workspaces.source.path)
+
+        sonar-scanner \
+          -Dsonar.projectKey=$(params.PROJECT_KEY) \
+          -Dsonar.projectName=$(params.PROJECT_NAME) \
+          -Dsonar.sources=. \
+          -Dsonar.host.url=$(params.SONAR_HOST_URL) \
+          -Dsonar.login=$SONAR_TOKEN
