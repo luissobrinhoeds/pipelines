@@ -12,4 +12,5 @@ spec:
     - name: maven
       image: $(params.MAVEN_IMAGE)
       script: |
+        cd $(workspaces.source.path)
         mvn clean package -DskipTests
