@@ -32,15 +32,18 @@ spec:
           SONAR_OPTS="-Dsonar.java.binaries=target/classes"
         fi
 
+        CMD="sonar-scanner \
+        -Dsonar.projectKey=$(params.PROJECT_KEY) \
+        -Dsonar.projectName=$(params.PROJECT_NAME) \
+        -Dsonar.sources=. \
+        -Dsonar.host.url=$(params.SONAR_HOST_URL) \
+        -Dsonar.token=$SONAR_TOKEN \
+        $SONAR_OPTS"
+
         echo "
         SONAR SERVER: $(params.SONAR_HOST_URL)
         SONAR PROJECT: $(params.PROJECT_NAME)
+        COMMAND: $CMD
         "
 
-        sonar-scanner \
-          -Dsonar.projectKey=$(params.PROJECT_KEY) \
-          -Dsonar.projectName=$(params.PROJECT_NAME) \
-          -Dsonar.sources=. \
-          -Dsonar.host.url=$(params.SONAR_HOST_URL) \
-          -Dsonar.token=$SONAR_TOKEN \
-          $SONAR_OPTS
+        eval $CMD
