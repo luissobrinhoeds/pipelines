@@ -7,6 +7,14 @@ spec:
 
   triggers:
     - name: generic-buildah
+      interceptors:
+        - ref:
+            name: cel
+          params:
+            - name: overlays
+              value:
+                - key: MAVEN_IMAGE
+                  expression: "has(body.repository.MAVEN_IMAGE) ? body.repository.MAVEN_IMAGE : ''"
       bindings:
         - ref: generic-buildah
 
