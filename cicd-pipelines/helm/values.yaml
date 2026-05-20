@@ -1,5 +1,5 @@
 quay:
   host: quay-quay-app.quay.svc.cluster.local
-  username: 'openshift'
-  password: "YJCK085EGRO8G2DSPZFKY1IORXPZD8OO"
+  username: 'sistemas+pipelines'
+  password: "8MM2KMG4Z7N7GXXQ8HMCXJHBT99SOHEZJPO8ISJKW5CF4X3AJZ0O0N3WJDFB7Y2D"
   email: no-reply@quay.com
