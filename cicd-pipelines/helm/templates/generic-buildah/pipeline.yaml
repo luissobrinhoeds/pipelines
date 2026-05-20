@@ -40,10 +40,8 @@ spec:
       params:
         - name: SONAR_HOST_URL
           value: "sonarqube-sonarqube.sonarqube.svc.cluster.local"
-
         - name: PROJECT_KEY
           value: $(params.GIT_REPO_NAME)
-
         - name: PROJECT_NAME
           value: $(params.GIT_REPO_NAME)
       taskRef:
@@ -51,9 +49,9 @@ spec:
         params:
           - name: kind
             value: task
-          - name: name:
+          - name: name
             value: sonar-scan
-          - name: namespace:
+          - name: namespace
             value: {{ .Release.Namespace }}
         workspaces:
           - name: source
@@ -75,9 +73,9 @@ spec:
         params:
           - name: kind
             value: task
-          - name: name:
+          - name: name
             value: sonar-quality-gate
-          - name: namespace:
+          - name: namespace
             value: {{ .Release.Namespace }}
       runAfter:
         - sonar-scan
