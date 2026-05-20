@@ -5,7 +5,7 @@ metadata:
 spec:
   params:
     - name: SONAR_HOST_URL
-      default: "sonarqube-sonarqube.sonarqube.svc.cluster.local"
+      default: "http://sonarqube-sonarqube.sonarqube.svc.cluster.local:9000"
     - name: PROJECT_KEY
     - name: PROJECT_NAME
   workspaces:
@@ -20,6 +20,11 @@ spec:
             secretKeyRef:
               name: sonarqube-token
               key: SONAR_TOKEN
+        - name: SONAR_URL
+          valueFrom:
+            secretKeyRef:
+              name: sonarqube-token
+              key: SONAR_URL
 
       script: |
         cd $(workspaces.source.path)
