@@ -12,7 +12,6 @@ spec:
     - name: IMAGE_URL
       default: "image-registry.openshift-image-registry.svc.cluster.local:5000"
     - name: MAVEN_IMAGE
-      default: "docker.io/library/maven:3.9.6-eclipse-temurin-17"
 
   workspaces:
     - name: shared-workspace

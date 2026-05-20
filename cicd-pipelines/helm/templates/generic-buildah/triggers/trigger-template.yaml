@@ -10,6 +10,7 @@ spec:
     - name: GIT_REPO_NAME
     - name: IMAGE_URL
     - name: MAVEN_IMAGE
+      default: "docker.io/library/maven:3.9.6-eclipse-temurin-17"
 
   resourcetemplates:
     - apiVersion: tekton.dev/v1
