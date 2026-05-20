@@ -53,10 +53,10 @@ spec:
             value: sonar-scan
           - name: namespace
             value: {{ .Release.Namespace }}
-        workspaces:
-          - name: source
-            workspace: shared-workspace
-            subPath: source-code
+      workspaces:
+        - name: source
+          workspace: shared-workspace
+          subPath: source-code
       runAfter:
         - git-clone-repo-app
 
