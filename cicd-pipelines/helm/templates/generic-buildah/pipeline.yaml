@@ -51,7 +51,7 @@ spec:
         - name: MAVEN_IMAGE
           value: $(params.MAVEN_IMAGE)
       workspaces:
-        - name: output
+        - name: source
           workspace: shared-workspace
           subPath: source-code
       runAfter:
